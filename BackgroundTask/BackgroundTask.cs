@@ -28,7 +28,7 @@ namespace apiConsumidor.BackgroundTask
                     HttpClient _apiClient = new HttpClient();
                     HttpResponseMessage _response = new HttpResponseMessage();
 
-                    _response = await _apiClient.GetAsync("http://localhost:65380/api/Estres/saludar", cancellation);
+                    _response = await _apiClient.GetAsync("http://172.30.64.4:8080/api/Estres/saludar", cancellation);
 
                     if (!_response.IsSuccessStatusCode)
                     {
