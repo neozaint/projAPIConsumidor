@@ -30,6 +30,17 @@ namespace apiConsumidor.Controllers
             return Ok(mensaje);
         }
 
+        [HttpGet("SaludarEscalador")]
+        public IActionResult SaludarEscalador()
+        {
+            string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
+                + " Variable Ambiente: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            
+            mensaje+= _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
+            
+            return Ok(mensaje);
+        }
+
         /// <summary>
         /// Inicia la obtención de mensajes y publicación de mensajes de el activeMQ. [No lanza excepcion]
         /// </summary>
