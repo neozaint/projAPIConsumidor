@@ -19,7 +19,9 @@ namespace apiConsumidor.BackgroundTask
                 HttpClient _apiClient = new HttpClient();
                 HttpResponseMessage _response = new HttpResponseMessage();
 
-                string ruta = "http://restapiescala-escaladoros.apps.us-west-1.online-starter.openshift.com/api/Estres/saludar";
+                string ruta = "http://172.30.120.60:8080/api/Estres/saludar";
+                
+                //string ruta = "http://restapiescala-escaladoros.apps.us-west-1.online-starter.openshift.com/api/Estres/saludar";
                 _response = await _apiClient.GetAsync(ruta, cancellation);
 
                 if (_response.IsSuccessStatusCode)
@@ -28,7 +30,7 @@ namespace apiConsumidor.BackgroundTask
                 }
                 else
                 {
-                    r = "error comunicandose con la ruta " + ruta;
+                    r = "Error comunicandose con la ruta " + ruta;
                 }
             }
             catch (Exception ex)

@@ -33,12 +33,19 @@ namespace apiConsumidor.Controllers
         [HttpGet("SaludarEscalador")]
         public IActionResult SaludarEscalador()
         {
-            string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
-                + " Variable Ambiente: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            
-            mensaje+= _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
-            
-            return Ok(mensaje);
+            try
+            {
+                string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
+            + " Variable Ambiente: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+                mensaje += _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
+
+                return Ok(mensaje);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
         /// <summary>
