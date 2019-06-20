@@ -17,12 +17,17 @@ namespace apiConsumidor.BackgroundTask
             HttpClient _apiClient = new HttpClient();
             HttpResponseMessage _response = new HttpResponseMessage();
 
-            _response = await _apiClient.GetAsync("http://restapiescala-escaladoros.apps.us-west-1.online-starter.openshift.com/api/Estres/saludar", cancellation);
+            string ruta = "http://restapiescala-escaladoros.apps.us-west-1.online-starter.openshift.com/api/Estres/saludar";
+            _response = await _apiClient.GetAsync(ruta, cancellation);
 
-            if (!_response.IsSuccessStatusCode)
+            if (_response.IsSuccessStatusCode)
             {
                 r = await _response.Content.ReadAsStringAsync();
             }
+            else
+            {
+                r = "error comunicandose con la ruta "+ruta;
+            } 
 
             return r;
         }
