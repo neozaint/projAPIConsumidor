@@ -14,21 +14,27 @@ namespace apiConsumidor.BackgroundTask
         public async Task<string> SaludarEscalador(CancellationToken cancellation)
         {
             string r = string.Empty;
-            HttpClient _apiClient = new HttpClient();
-            HttpResponseMessage _response = new HttpResponseMessage();
-
-            string ruta = "http://restapiescala-escaladoros.apps.us-west-1.online-starter.openshift.com/api/Estres/saludar";
-            _response = await _apiClient.GetAsync(ruta, cancellation);
-
-            if (_response.IsSuccessStatusCode)
+            try
             {
-                r = await _response.Content.ReadAsStringAsync();
+                HttpClient _apiClient = new HttpClient();
+                HttpResponseMessage _response = new HttpResponseMessage();
+
+                string ruta = "http://restapiescala-escaladoros.apps.us-west-1.online-starter.openshift.com/api/Estres/saludar";
+                _response = await _apiClient.GetAsync(ruta, cancellation);
+
+                if (_response.IsSuccessStatusCode)
+                {
+                    r = await _response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    r = "error comunicandose con la ruta " + ruta;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                r = "error comunicandose con la ruta "+ruta;
-            } 
-
+                r= ex.Message;
+            }
             return r;
         }
 
