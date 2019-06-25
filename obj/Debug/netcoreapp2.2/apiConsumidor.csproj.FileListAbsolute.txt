@@ -24,4 +24,3 @@ C:\Users\852038\Desktop\LaboratorioOS\apiEscalador\apiConsumidor\bin\Debug\netco
 C:\Users\852038\Desktop\LaboratorioOS\apiEscalador\apiConsumidor\bin\Debug\netcoreapp2.2\apiConsumidor.dll
 C:\Users\852038\Desktop\LaboratorioOS\apiEscalador\apiConsumidor\bin\Debug\netcoreapp2.2\apiConsumidor.pdb
 C:\Users\852038\Desktop\LaboratorioOS\apiEscalador\apiConsumidor\obj\Debug\netcoreapp2.2\apiConsumidor.RazorTargetAssemblyInfo.cache
-C:\Users\852038\Desktop\LaboratorioOS\apiEscalador\apiConsumidor\obj\Debug\netcoreapp2.2\apiConsumidor.csprojAssemblyReference.cache
