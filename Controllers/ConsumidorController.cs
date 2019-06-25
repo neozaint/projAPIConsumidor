@@ -1,6 +1,7 @@
 ﻿using apiConsumidor.BackgroundTask;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -25,20 +26,25 @@ namespace apiConsumidor.Controllers
         [HttpGet("Saludar")]
         public IActionResult Saludar()
         {
+            Log.Information("Se incovó el método: " + nameof(Saludar));
+
             string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
                 +" Variable Ambiente: "+ Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); 
             return Ok(mensaje);
         }
 
         [HttpGet("SaludarEscalador")]
-        public IActionResult SaludarEscalador()
+        public async Task<IActionResult> SaludarEscalador()
         {
             try
             {
+
+                Log.Information("Se incovó el método: " + nameof(SaludarEscalador));
+
                 string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
             + " Variable Ambiente: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-                mensaje += _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
+                mensaje += await _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
 
                 return Ok(mensaje);
             }
@@ -57,6 +63,8 @@ namespace apiConsumidor.Controllers
         {
             try
             {
+                Log.Information("Se incovó el método: " + nameof(IniciarOperacionAsync));
+
                 await _backgroundTask.StartAsync(_configuration);
                 _response = Ok(System.Reflection.MethodInfo.GetCurrentMethod().Name);
             }

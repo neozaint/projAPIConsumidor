@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -36,6 +37,7 @@ namespace apiConsumidor.BackgroundTask
             catch (Exception ex)
             {
                 r= ex.Message;
+                Log.Error(ex, "ERRORMETODO", nameof(SaludarEscalador));
             }
             return r;
         }
@@ -59,6 +61,7 @@ namespace apiConsumidor.BackgroundTask
                 catch (Exception ex)
                 {
                     r= ex.Message;
+                    Log.Error(ex, "ERRORMETODO", nameof(ConsumirCiclo));
                 }
 
             }
