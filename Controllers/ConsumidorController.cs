@@ -22,6 +22,10 @@ namespace apiConsumidor.Controllers
             _backgroundTask = backgroundTask;
             _configuration = configuration;
         }
+        public string GetExtraValue(IConfiguration configuration)
+        {
+            return configuration.GetValue<string>("ExtraSettingNotInSettingsFile");
+        }
 
         [HttpGet("Saludar")]
         public IActionResult Saludar()
@@ -29,7 +33,8 @@ namespace apiConsumidor.Controllers
             Log.Information("Se incovó el método: " + nameof(Saludar));
 
             string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
-                +" Variable Ambiente: "+ Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); 
+                + " Variable Ambiente: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                + " ExtraSettingNotInSettingsFile: "+GetExtraValue(_configuration); 
             return Ok(mensaje);
         }
 
@@ -41,8 +46,7 @@ namespace apiConsumidor.Controllers
 
                 Log.Information("Se incovó el método: " + nameof(SaludarEscalador));
 
-                string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName
-            + " Variable Ambiente: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName;
 
                 mensaje += await _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
 
