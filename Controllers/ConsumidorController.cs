@@ -45,10 +45,7 @@ namespace apiConsumidor.Controllers
             {
 
                 Log.Information("Se incovó el método: " + nameof(SaludarEscalador));
-
-                string mensaje = "Hola soy: " + System.Reflection.Assembly.GetExecutingAssembly().FullName;
-
-                mensaje += await _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
+                string mensaje = await _backgroundTask.SaludarEscalador(new System.Threading.CancellationToken());
 
                 return Ok(mensaje);
             }

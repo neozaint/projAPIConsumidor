@@ -28,10 +28,12 @@ namespace apiConsumidor.BackgroundTask
                 if (_response.IsSuccessStatusCode)
                 {
                     r = await _response.Content.ReadAsStringAsync();
+                    Log.Information(r);
                 }
                 else
                 {
                     r = "Error comunicandose con la ruta " + ruta;
+                    Log.Information(r);
                 }
             }
             catch (Exception ex)
